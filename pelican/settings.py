@@ -213,6 +213,11 @@ def read_settings(
                 if p != "THEME" or os.path.exists(absp):
                     settings[p] = absp
 
+        if settings.get("THEME_EXTRA_DIRS") is not None:
+            settings["THEME_EXTRA_DIRS"] = [
+                getabs(theme_extra_dir) for theme_extra_dir in settings["THEME_EXTRA_DIRS"]
+            ]
+
         if settings.get("PLUGIN_PATHS") is not None:
             settings["PLUGIN_PATHS"] = [
                 getabs(pluginpath) for pluginpath in settings["PLUGIN_PATHS"]
